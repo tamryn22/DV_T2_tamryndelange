@@ -25,7 +25,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">SUPERSUBS</a>
+    <a class="navbar-brand" href="#">WHAT'S SUB?</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,7 +40,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            More
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Menu</a>
@@ -61,26 +61,26 @@
       <h1>Popular Choice </h1>
       <div class="card-group">
         <div class="card">
-          <img src="/images/italian sub scr.png" class="card-img-top" alt="...">
+          <img src="/images/italian sub scr.png" width="180px" height="240px" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Italian Hoagie</h5>
-            <p class="card-text">Made with Roll-Pepperoni-Genoa Salami- Provolone Cheese- Capicola Ham- Iceberg Lettuce- Tomato- Sweet Peppers- Onion- Hoagie Oil</p>
+            <p class="card-text">Made with Roll-Pepperoni-Genoa Salami- Provolone Cheese- Capicola Ham- Iceberg Lettuce- Tomato- Sweet Peppers- Onion- Hoagie Oil</p><br/> <b>R70.99</b>
             <p class="card-text"><small class="text-body-secondary"></small></p>
           </div>
         </div>
         <div class="card">
-          <img src="/images/smoked chicken scr.png" class="card-img-top" alt="...">
+          <img src="/images/smoked chicken scr.png" width="180px" height="240px" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Smoked Chicken Breast Sub</h5>
-            <p class="card-text">Chicken is smoked at 250. Roll; Iceburg Lettuce; Provolone Cheese; Smoked sliced Chicken Breast and Mayonnaise</p>
+            <p class="card-text">Chicken is smoked at 250. Roll; Iceburg Lettuce; Provolone Cheese; Smoked sliced Chicken Breast and Mayonnaise</p><b>R80.00</b>
             <p class="card-text"><small class="text-body-secondary"></small></p>
           </div>
         </div>
         <div class="card">
-          <img src="/images/meetball sub src.png" class="card-img-top" alt="...">
+          <img src="/images/meetball sub src.png" width="180px" height="240px" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Meatball Sub</h5>
-            <p class="card-text">Meatballs prepared in homemade sauce. Roll; Sandwich Pepperoni; Meatballs; Provolne Cheese; Mozzarella; Marinara Sauce.</p>
+            <p class="card-text">Meatballs prepared in homemade sauce. Roll; Sandwich Pepperoni; Meatballs; Provolne Cheese; Mozzarella; Marinara Sauce.</p><br/><b>R110.00</b>
             <p class="card-text"><small class="text-body-secondary"></small></p>
           </div>
         </div>
@@ -88,23 +88,26 @@
     </header>
 
     <h1>Build Your Own</h1>
-    <form>
+    <form id="subForm" onchange="realTimeCost()">
         <h3>Order</h3>
         <input type="text" class="form-control" placeholder="First Name" id="first">
-        <input type="text" class="form-control" placeholder="Location" id="last">
-        <select class="form-control" id="subject">
+        <input type="text" class="form-control" placeholder="Location" id="location">
+        <select class="form-control" id="payment">
           <option>Select Payment Method </option>
           <option>CARD</option>
           <option>EFT</option>
           <option>PAYPAL</option>
         </select>
 
-        <button class="btn btn-primary" type="button" onclick="addStudent()">Confirm</button>    
+        <button class="btn btn-primary" type="button" onclick="addOrder()">Confirm</button>    
       </form>
+      <div class="right">
+        <div class="orderCost" id="realTimeCost">R0.00</div>
+      </div>
 
     <form>
       <h3>Custom Sub Maker</h3>
-      <input type="text" class="form-control" placeholder="Name Your Sub" id="pizzaName">
+      <input type="text" class="form-control" placeholder="Name Your Sub" id="subName">
       <select class="form-control" id="size">
         <option>Choose a Size</option>
         <option>Small</option>
@@ -112,118 +115,88 @@
         <option>Large</option>
       </select>
 
-        <div class="base-options">
 
-          <h3>Base Options</h3>
-          <!-- name makes the group
-          value will be returned what is checked
-          for need to refer to id/name but radio need name for group -->
-          <div class="base-check">
-            <input class="form-check-input" type="radio" name="baseRadio" id="standard" value="Standard" checked>
-            <label class="form-check-label" for="standard">
-              Standard Base
-            </label>
-          </div>
-
-          <div class="base-check">
-            <input class="form-check-input" type="radio" name="baseRadio" id="deep" value="Deep Dish">
-            <label class="form-check-label" for="deep">
-              Deep Dish Base
-            </label>
-          </div>
-
-          <div class="base-check">
-            <input class="form-check-input" type="radio" name="baseRadio" id="thin" value="Thin & Crispy">
-            <label class="form-check-label" for="thin">
-              Thin & Crispy
-            </label>
-          </div>
-
-        
-
-        </div>
-
-        <div class="toppings">
-          <h3>Topping Options</h3>
+        <div class="fillings">
+          <h3>Filling Options</h3>
 
           <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="salami" id="salami">
+            <input class="form-check-input" name="fillings" type="checkbox" value="salami" id="salami" data-cost="15">
             <label class="form-check-label" for="salami">
               Salami
             </label>
           </div>
 
           <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="olives" id="olives">
+            <input class="form-check-input" name="fillings" type="checkbox" value="olives" id="olives" data-cost="10">
             <label class="form-check-label" for="olives">
               Olives
             </label>
           </div>
 
+
           <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="feta" id="feta">
-            <label class="form-check-label" for="feta">
-              Feta
+            <input class="form-check-input" name="fillings" type="checkbox" value="chicken" id="chicken" data-cost="25">
+            <label class="form-check-label" for="chicken">
+              Chicken
             </label>
           </div>
 
           <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="pineapple" id="pineapple">
-            <label class="form-check-label" for="pineapple">
-              Pine Apple
-            </label>
-          </div>
-
-          <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="ham" id="ham">
-            <label class="form-check-label" for="ham">
-              Ham
-            </label>
-          </div>
-
-          <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="bacon" id="bacon">
+            <input class="form-check-input" name="fillings" type="checkbox" value="bacon" id="bacon" data-cost="20">
             <label class="form-check-label" for="bacon">
               Bacon
             </label>
           </div>
           
-          <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="anchovies" id="anchovies">
-            <label class="form-check-label" for="anchovies">
-              anchovies
-            </label>
-          </div>
 
           <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="extra" id="extra">
+            <input class="form-check-input" name="fillings" type="checkbox" value="extra" id="extra" data-cost="10">
             <label class="form-check-label" for="extra">
-              extra
+              Extra Cheese
             </label>
           </div>
 
           <div class="top-check">
-            <input class="form-check-input" name="toppings" type="checkbox" value="chillies" id="chillies">
+            <input class="form-check-input" name="toppings" type="checkbox" value="chillies" id="chillies" data-cost="15">
             <label class="form-check-label" for="chillies">
-              chillies
+              Chillies
+            </label>
+          </div>
+
+          <div class="top-check">
+            <input class="form-check-input" name="fillings" type="checkbox" value="meatball" id="meatball" data-cost="25">
+            <label class="form-check-label" for="meatball">
+              Meatballs
             </label>
           </div>
 
           </div>
 
           
-          <div class="drinks">
-            <h3>Choose your Drink</h3>
-            <input type="text" class="form-control" placeholder="Name Your Sub" id="pizzaName">
+          <div class="drinks" style="margin-top: 100px;">
+            <h3> Drinks</h3>
+            <!-- <input type="text" class="form-control" placeholder="Name Your Sub" id="pizzaName"> -->
             <select class="form-control" id="size">
-              <option>Choose a Size</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
+              <option>Choose a Drink</option>
+              <option>Coke</option>
+              <option>Sprite</option>
+              <option>Juice</option>
+              <option>Water</option>
             </select>
-          <button class="btn btn-primary" type="button" onclick="makePizza()">Make My sub</button>    
+
+          <button class="btn btn-primary" type="button" onclick="makeSub(); displayOrder()">Make My sub</button>    
             </div>
-        </form>
+    </form>
+
+        <div class="output">
+          <div class="outHeader">
+            <h3>Your Current Order:</h3>
+            <div class="totalOrder"><h3 id="orderTotal">R0.00</h3></div>
+          </div>
+    
+          <div id="orders">
+            </div>
+        </div>
   <footer>
 
     <i>For more info contact us.

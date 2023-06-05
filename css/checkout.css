@@ -86,6 +86,8 @@ form{
     width: 50%;
     margin:  0 auto;
     margin-top: 50px;
+    background-color: #ff1a1a;
+    padding: 20px;
 }
 
 input{
@@ -128,6 +130,10 @@ select{
 .top-check{
     width: 33%;
     float: left;
+}
+
+.col-3{
+    padding-left: 150px;
 }
 
 .round-image-a{
