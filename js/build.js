@@ -102,7 +102,7 @@ displayOrder = () => {
                </ul>
            </div>`
    
-           total.innerHTML =" R" + overallTotal + ".00";
+           total.innerHTML =" R " + overallTotal + ".00 ";
        }
    
    

@@ -53,23 +53,23 @@ h4{font-family: 'Playfair Display', serif;
 }
 
 .normal{
-    background-color: #2b2b2b;
+    background-color: #f98527;
     color: rgb(255, 255, 255);
+    border: 10px;
 }
 .normal:hover{
     cursor:pointer;
     background-color: white;
     color: #2b2b2b;
-    border:2px solid #2b2b2b;
+    border:5px solid #2b2b2b;
     padding-top:5px;
+    
 }
 
 .inverted{
     background-color: #ffffff;
     padding-top: 5px !important;
     color: rgb(239, 135, 50);
-    
-   
 }
 .inverted:hover{
     cursor: pointer;
