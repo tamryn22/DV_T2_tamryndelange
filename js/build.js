@@ -1,3 +1,10 @@
+
+displaySub= () => {
+
+}
+
+let subOrder = []; 
+
 addOrder= () => {
     let first = document.getElementById("first").value
     let location = document.getElementById("location").value 
@@ -13,8 +20,8 @@ makeSub = () => {
 
     let subTotal = 0;
 
-    let subName = document.getElementById("name").value
-    let size = document.getElementById("size").value
+    let subName = document.getElementById("name").value;
+    let size = document.getElementById("size").value;
     
     if(size === "Small"){
         subTotal = subTotal + 15;
@@ -22,6 +29,16 @@ makeSub = () => {
         subTotal = subTotal + 30;
     } else if(size === "Large"){
         subTotal = subTotal + 50;
+    }
+    
+    let breadOptions = document.getElementById("bread");
+    let breadValue;
+    for(let i =0; i < breadOptions.length; i++){
+        if(breadOptions [i].checked){
+            breadValue = breadOptions [i].value
+            subTotal = subTotal + +breadOptions [i].dataset.cost
+        }      
+
     }
     
     let fillingsOptions = document.getElementsByName("fillings");
@@ -33,9 +50,10 @@ makeSub = () => {
         }
     }
 
-    pizzaOrder.push({
+    subOrder.push({
         subName: subName,
-        Size: size,
+        subSize: size,
+        subBread: breadValue,
         subFillings: topArray,
         subPrice: subTotal
     });
@@ -59,15 +77,23 @@ realTimeCost = () => {
         realTimeValue = realTimeValue + 50;
     }
 
+    let breadOptions = document.getElementsByName("bread");
+    for(let i = 0; i < breadOptions.length; i ++){
+        if(breadOption [i].checked){
+            realTimePrice = realTimePrice + +breadOption [i].dataset.cost
+        }
+        
+    }
+
     let fillingsOptions = document.getElementsByName("fillings");
     for(let i = 0; i < fillingsOptions.length; i++){
         if(fillingsOptions[i].checked){
-            realTimeValue = realTimeValue+ +fillingsOptions[i].dataset.cost
+            realTimePrice = realTimePrice+ +fillingsOptions[i].dataset.cost
         }
     }
     // console.log (realTimeValue)
 
-    document.getElementById("realTimeCost").innerHTML = "R" + realTimeValue + ". 00"
+    document.getElementById("realTimeCost").innerHTML = "R" + realTimePrice + ".00"
     
 }
 
@@ -76,7 +102,7 @@ displayOrder = () => {
        let area = document.getElementById ("orders");
        let total = document.getElementById("orderTotal");
    
-      area.innerHTML ="";
+      area.innerHTML = "";
    
        let overallTotal = 0;
        for(let i = 0; i < subOrder.length; i ++){
@@ -84,12 +110,12 @@ displayOrder = () => {
            let name = subOrder [i] .subName;
            let size = subOrder [i] .size;
            let fillings = subOrder [i] .fillingsOptions;
-           let cost = subOrder [i] .subPrice;
+           let price = subOrder [i] .subPrice;
    
-           overallTotal += cost;
-   // + for insert
+           overallTotal += price;
+
+   // + for insert ``
            area.innerHTML += `
-           
            <div class="card" style="width: 18rem;">
                <img src="/images/side-view-sandwich-white-bread-with-grilled-meat-cutlet-cheese-lettuce-french-fries-mayo-ketchup-boardjpg.jpg" class="card-img-top" alt="YOUR PIZZA">
                <div class="card-header">
@@ -103,7 +129,11 @@ displayOrder = () => {
            </div>`
    
            total.innerHTML =" R " + overallTotal + ".00 ";
-       }
-   
-   
+       }   
    }
+
+   checkOut =() =>{
+    let data= JSON.stringify(pizzaOrder)
+    localStorage.setItem('order', data)
+    window.location.href = '../pages/checkout.html';
+}

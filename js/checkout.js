@@ -1,74 +1,45 @@
-calculate = () => {
-    let valueOne= +document.getElementById("valueOne").value
-    let valueTwo = +document.getElementById("valueTwo").value 
-    let operator =document.getElementById("operator").value
-    console.log(valueOne, valueTwo, operator)
-    
-}
+let checkTotal = 0;
 
-realTimeCost = () => {
+displayCheck = () =>{
+    let data =JSON.parse(localStorage.getItem('order'));
+    let items = documenty.getElementById('checkoutOrder');
+    let totalArea = document.getElementById ('totalOut');
 
-    realTimeValue = 0;
-    let size = document.getElementById("size").value;
+    for (let i =0; i < data.length; i ++){
+        let name = data[i].subName;
+        let size = data[i].subSize;
+        let bread = data[i].subBread;
+        let fillings = data[i].subFillings;
+        let price = data[i].subPrice
 
-    if(size === "Small"){
-        realTimeValue = realTimeValue + 20;
-    } else if(size === "Medium"){
-        realTimeValue = realTimeValue + 40;
-    } else if(size === "Large"){
-        realTimeValue = realTimeValue + 60;
-    }
+        checkTotal =+ price;
 
-    
-
-    let toppingOptions = document.getElementsByName("toppings");
-    for(let i = 0; i < toppingOptions.length; i++){
-        if(toppingOptions[i].checked){
-            realTimeValue = realTimeValue+ +toppingOptions[i].dataset.cost
-        }
-    }
-    // console.log (realTimeValue)
-
-    document.getElementById("realTimeCost").innerHTML = "R" + realTimeValue + ". 00"
-    
-}
-
-
-displayOrder = () => {
- //decoupling- request and response 
-    let area = document.getElementById ("orders");
-    let total = document.getElementById("orderTotal");
-
-   area.innerHTML ="";
-
-    let overallTotal = 0;
-    for(let i = 0; i < pizzaOrder.length; i ++){
-
-        let name = pizzaOrder [i] .pizzaName;
-        let size = pizzaOrder [i] .pizzaSize;
-        let base = pizzaOrder [i] .pizzaBase;
-        let toppings = pizzaOrder [i] .pizzaToppings;
-        let cost = pizzaOrder [i] .pizzaPrice;
-
-        overallTotal += cost;
-// + for insert
-        area.innerHTML += `
-        
-        <div class="card" style="width: 18rem;">
-            <img src="/images/side-view-sandwich-white-bread-with-grilled-meat-cutlet-cheese-lettuce-french-fries-mayo-ketchup-boardjpg.jpg" class="card-img-top" alt="YOUR PIZZA">
-            <div class="card-header">
-                <h3 class="card-title">${name}</h3> 
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Base:</strong> ${base}</p></li>
-                <li class="list-group-item"><strong>Size:</strong> ${size}</p></li>
-                <li  class="list-group-item"><strong>Toppings:</strong>${toppings.join(", ")}</p></li>
-                <li class="list-group-item"><strong>R${cost}.00</strong></p></li>
-            </ul>
+        items.innerHTML =+ `
+        <div class="orderLine">
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Size:</strong> ${size} </p>
+            <p><strong>Base:</strong> ${base}</p>
+            <p><strong>Toppings:</strong> ${fillings.join()}</p>
+            <p><strong>Price:</strong> ${price}.00</p>
         </div>`
-
-        total.innerHTML =" R" + overallTotal + ".00";
+    totalArea.innerHTML = "R" + checkTotal + ".00"
+        
     }
+}
 
+promoNumber = () => {
+    let value = +document.getElementById('promo').value
+    let newTotal = document.getElementById('totalOut')
+
+    if(value === 1234){
+        let discount = 0.1;
+        let answer = CheckOut - discount * 100
+        
+        newTotal.innerHTML = "R" + answer + ".00"
+
+
+    } else {
+        alert("Promo Code not valid")
+    }
 
 }

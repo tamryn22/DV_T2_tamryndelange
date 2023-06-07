@@ -15,8 +15,10 @@
 
 <!--internal document-->
 <link rel="stylesheet" href="../css/checkout.css">
+<script src="../js/checkout.js"></script>
+
 </head>
-<body>
+<body onload="displayCheck()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">WHAT'S SUB?</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,29 +100,25 @@
     </div>
     
     <h1>Checkout</h1>
-    <form>
-       
-        <input type="number" class="form-control" placeholder="Donation?" id="valueOne">
-        <select class="form-control" id="operator">
-          <option>Plus</option>
+
+    <div class="checkLeft">
+      <h1>Your Order</h1>
+      <div id="checkoutOrder">
           
-        </select>
-        <input type="number" class="form-control" placeholder="Value Two" id="valueTwo">
-
-        <button class="btn btn-info" type="button" onclick="calculate()">Checkout</button>    
-      </form>
-
-      <div class="output">
-        <div class="outHeader">
-          <h3>Your Current Order:</h3>
-          <div class="totalOrder"><h3 id="orderTotal">R0.00</h3></div>
-        </div>
-  
-        <div id="orders">
-          </div>
       </div>
+    </div>
+    <div class="checkRight">
+       <h1>Your Total</h1>
+        <h2 id="totalOut" class="total">R0.00</h2>
+
+        <h3>Enter a Promo Code</h3>
+        <input type="text" class="form-control" placeholder="#0000" id="promoNumber">
+        <button class="btn btn-primary" type="button" onclick="promoNumber()">Add Discount</button>  
+
+        <button class="btn btn-primary" type="button" onclick="resetReturn()">Make Payment</button>  
 
 
+    </div>
 
     <footer>
         <i>For more info contact us.
